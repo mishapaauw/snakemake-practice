@@ -1,0 +1,51 @@
+Building DAG of jobs...
+SLURM run ID: ed5ff137-4327-4c95-9d95-63df09c9503e
+Using shell: /usr/bin/bash
+Provided remote nodes: 100
+Job stats:
+job          count
+---------  -------
+all              1
+clean            3
+summarize        3
+total            7
+
+Select jobs to execute...
+Execute 3 jobs...
+
+[Tue Oct 21 17:16:50 2025]
+rule clean:
+    input: data/sample1.txt
+    output: results/sample1.clean.txt
+    jobid: 2
+    reason: Missing output files: results/sample1.clean.txt
+    wildcards: sample=sample1
+    resources: mem_mb=2000, mem_mib=1908, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=30, cpus_per_task=1
+
+No SLURM account given, trying to guess.
+Guessed SLURM account: linuxusers
+Job 2 has been submitted with SLURM jobid 212895 (log: /zfs/omics/personal/mpaauw/DS/snakemake-practice/.snakemake/slurm_logs/rule_clean/212895_sample1.log).
+
+[Tue Oct 21 17:16:50 2025]
+rule clean:
+    input: data/sample3.txt
+    output: results/sample3.clean.txt
+    jobid: 6
+    reason: Missing output files: results/sample3.clean.txt
+    wildcards: sample=sample3
+    resources: mem_mb=2000, mem_mib=1908, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=30, cpus_per_task=1
+
+Job 6 has been submitted with SLURM jobid 212896 (log: /zfs/omics/personal/mpaauw/DS/snakemake-practice/.snakemake/slurm_logs/rule_clean/212896_sample3.log).
+
+[Tue Oct 21 17:16:50 2025]
+rule clean:
+    input: data/sample2.txt
+    output: results/sample2.clean.txt
+    jobid: 4
+    reason: Missing output files: results/sample2.clean.txt
+    wildcards: sample=sample2
+    resources: mem_mb=2000, mem_mib=1908, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=30, cpus_per_task=1
+
+Job 4 has been submitted with SLURM jobid 212897 (log: /zfs/omics/personal/mpaauw/DS/snakemake-practice/.snakemake/slurm_logs/rule_clean/212897_sample2.log).
+Waiting at most 60 seconds for missing files.
+Terminating processes on user request, this might take some time.

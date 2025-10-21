@@ -1,0 +1,20 @@
+# Executor settings
+executor: slurm
+jobs: 100  # Maximum number of simultaneous jobs
+
+# Default resources for all rules
+default-resources:
+        - runtime=60                  # Default 60 minutes
+        - mem_mb=4000                 # Default 4GB RAM
+        - cpus_per_task=1            # Default 1 CPU
+
+# Retry failed jobs
+retries: 3
+
+slurm:
+        status-check-interval: 10
+
+latency-wait: 10
+
+# Keep going if some jobs fail
+keep-going: false

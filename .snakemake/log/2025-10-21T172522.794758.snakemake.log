@@ -1,0 +1,119 @@
+Building DAG of jobs...
+SLURM run ID: f24fc631-c45d-4059-bdc3-3eb8f3e25e2c
+Using shell: /usr/bin/bash
+Provided remote nodes: 100
+Job stats:
+job          count
+---------  -------
+all              1
+clean            3
+summarize        3
+total            7
+
+Select jobs to execute...
+Execute 3 jobs...
+
+[Tue Oct 21 17:25:22 2025]
+rule clean:
+    input: data/sample1.txt
+    output: results/sample1.clean.txt
+    jobid: 2
+    reason: Missing output files: results/sample1.clean.txt
+    wildcards: sample=sample1
+    resources: mem_mb=2000, mem_mib=1908, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, cpus_per_task=1
+
+No SLURM account given, trying to guess.
+Guessed SLURM account: linuxusers
+Job 2 has been submitted with SLURM jobid 212916 (log: /zfs/omics/personal/mpaauw/DS/snakemake-practice/.snakemake/slurm_logs/rule_clean/212916_sample1.log).
+
+[Tue Oct 21 17:25:22 2025]
+rule clean:
+    input: data/sample3.txt
+    output: results/sample3.clean.txt
+    jobid: 6
+    reason: Missing output files: results/sample3.clean.txt
+    wildcards: sample=sample3
+    resources: mem_mb=2000, mem_mib=1908, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, cpus_per_task=1
+
+Job 6 has been submitted with SLURM jobid 212917 (log: /zfs/omics/personal/mpaauw/DS/snakemake-practice/.snakemake/slurm_logs/rule_clean/212917_sample3.log).
+
+[Tue Oct 21 17:25:22 2025]
+rule clean:
+    input: data/sample2.txt
+    output: results/sample2.clean.txt
+    jobid: 4
+    reason: Missing output files: results/sample2.clean.txt
+    wildcards: sample=sample2
+    resources: mem_mb=2000, mem_mib=1908, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, cpus_per_task=1
+
+Job 4 has been submitted with SLURM jobid 212918 (log: /zfs/omics/personal/mpaauw/DS/snakemake-practice/.snakemake/slurm_logs/rule_clean/212918_sample2.log).
+[Tue Oct 21 17:26:02 2025]
+Finished job 2.
+1 of 7 steps (14%) done
+[Tue Oct 21 17:26:02 2025]
+Finished job 6.
+2 of 7 steps (29%) done
+[Tue Oct 21 17:26:02 2025]
+Finished job 4.
+3 of 7 steps (43%) done
+Select jobs to execute...
+Execute 3 jobs...
+
+[Tue Oct 21 17:26:02 2025]
+rule summarize:
+    input: results/sample1.clean.txt
+    output: results/sample1.summary.txt
+    jobid: 1
+    reason: Missing output files: results/sample1.summary.txt; Input files updated by another job: results/sample1.clean.txt
+    wildcards: sample=sample1
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, cpus_per_task=1
+
+Job 1 has been submitted with SLURM jobid 212919 (log: /zfs/omics/personal/mpaauw/DS/snakemake-practice/.snakemake/slurm_logs/rule_summarize/212919_sample1.log).
+
+[Tue Oct 21 17:26:02 2025]
+rule summarize:
+    input: results/sample3.clean.txt
+    output: results/sample3.summary.txt
+    jobid: 5
+    reason: Missing output files: results/sample3.summary.txt; Input files updated by another job: results/sample3.clean.txt
+    wildcards: sample=sample3
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, cpus_per_task=1
+
+Job 5 has been submitted with SLURM jobid 212920 (log: /zfs/omics/personal/mpaauw/DS/snakemake-practice/.snakemake/slurm_logs/rule_summarize/212920_sample3.log).
+
+[Tue Oct 21 17:26:02 2025]
+rule summarize:
+    input: results/sample2.clean.txt
+    output: results/sample2.summary.txt
+    jobid: 3
+    reason: Missing output files: results/sample2.summary.txt; Input files updated by another job: results/sample2.clean.txt
+    wildcards: sample=sample2
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, cpus_per_task=1
+
+Job 3 has been submitted with SLURM jobid 212921 (log: /zfs/omics/personal/mpaauw/DS/snakemake-practice/.snakemake/slurm_logs/rule_summarize/212921_sample2.log).
+[Tue Oct 21 17:26:13 2025]
+Finished job 1.
+4 of 7 steps (57%) done
+Removing temporary output results/sample1.clean.txt.
+[Tue Oct 21 17:26:13 2025]
+Finished job 5.
+5 of 7 steps (71%) done
+Removing temporary output results/sample3.clean.txt.
+[Tue Oct 21 17:26:13 2025]
+Finished job 3.
+6 of 7 steps (86%) done
+Removing temporary output results/sample2.clean.txt.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct 21 17:26:13 2025]
+localrule all:
+    input: results/sample1.summary.txt, results/sample2.summary.txt, results/sample3.summary.txt
+    jobid: 0
+    reason: Input files updated by another job: results/sample2.summary.txt, results/sample3.summary.txt, results/sample1.summary.txt
+    resources: mem_mb=4000, mem_mib=3815, disk_mb=1000, disk_mib=954, tmpdir=/tmp, runtime=60, cpus_per_task=1
+
+[Tue Oct 21 17:26:13 2025]
+Finished job 0.
+7 of 7 steps (100%) done
+Complete log: .snakemake/log/2025-10-21T172522.794758.snakemake.log

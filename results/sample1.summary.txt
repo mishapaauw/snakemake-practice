@@ -1,0 +1,1 @@
+3 results/sample1.clean.txt

@@ -1,0 +1,41 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided remote nodes: 1
+Provided resources: mem_mb=2000, mem_mib=1908, disk_mb=1000, disk_mib=954, cpus_per_task=1
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct 21 17:18:39 2025]
+rule clean:
+    input: data/sample3.txt
+    output: results/sample3.clean.txt
+    jobid: 0
+    reason: Forced execution
+    wildcards: sample=sample3
+    resources: mem_mb=2000, mem_mib=1908, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=30, cpus_per_task=1
+
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=2000, mem_mib=1908, disk_mb=1000, disk_mib=954, cpus_per_task=1
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct 21 17:18:40 2025]
+localrule clean:
+    input: data/sample3.txt
+    output: results/sample3.clean.txt
+    jobid: 0
+    reason: Forced execution
+    wildcards: sample=sample3
+    resources: mem_mb=2000, mem_mib=1908, disk_mb=1000, disk_mib=954, tmpdir=/tmp, runtime=30, cpus_per_task=1
+
+[Tue Oct 21 17:18:40 2025]
+Finished job 0.
+1 of 1 steps (100%) done
+Storing output in storage.
+[Tue Oct 21 17:18:40 2025]
+Finished job 0.
+1 of 1 steps (100%) done
+Storing output in storage.

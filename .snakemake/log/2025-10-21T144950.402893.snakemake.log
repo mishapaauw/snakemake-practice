@@ -1,0 +1,176 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 3
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count
+---------------  -------
+all                    1
+big_calculation        3
+preprocess             3
+summarize              3
+total                 10
+
+Select jobs to execute...
+Execute 3 jobs...
+
+[Tue Oct 21 14:49:50 2025]
+localrule preprocess:
+    input: data/sample1.txt
+    output: results/sample1.clean.txt
+    log: logs/sample1.preprocess.log
+    jobid: 3
+    reason: Missing output files: results/sample1.clean.txt
+    wildcards: sample=sample1
+    resources: tmpdir=/tmp, mem_mb=500, mem_mib=477
+
+
+[Tue Oct 21 14:49:50 2025]
+localrule preprocess:
+    input: data/sample3.txt
+    output: results/sample3.clean.txt
+    log: logs/sample3.preprocess.log
+    jobid: 9
+    reason: Missing output files: results/sample3.clean.txt
+    wildcards: sample=sample3
+    resources: tmpdir=/tmp, mem_mb=500, mem_mib=477
+
+
+[Tue Oct 21 14:49:50 2025]
+localrule preprocess:
+    input: data/sample2.txt
+    output: results/sample2.clean.txt
+    log: logs/sample2.preprocess.log
+    jobid: 6
+    reason: Missing output files: results/sample2.clean.txt
+    wildcards: sample=sample2
+    resources: tmpdir=/tmp, mem_mb=500, mem_mib=477
+
+[Tue Oct 21 14:49:50 2025]
+Finished job 3.
+1 of 10 steps (10%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct 21 14:49:50 2025]
+localrule big_calculation:
+    input: results/sample1.clean.txt
+    output: results/sample1.calc.txt
+    log: logs/sample1.calc.log
+    jobid: 2
+    reason: Missing output files: results/sample1.calc.txt; Input files updated by another job: results/sample1.clean.txt
+    wildcards: sample=sample1
+    threads: 2
+    resources: tmpdir=/tmp, mem_mb=1000, mem_mib=954, runtime=10
+
+[Tue Oct 21 14:49:50 2025]
+Finished job 9.
+2 of 10 steps (20%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct 21 14:49:50 2025]
+localrule big_calculation:
+    input: results/sample3.clean.txt
+    output: results/sample3.calc.txt
+    log: logs/sample3.calc.log
+    jobid: 8
+    reason: Missing output files: results/sample3.calc.txt; Input files updated by another job: results/sample3.clean.txt
+    wildcards: sample=sample3
+    threads: 2
+    resources: tmpdir=/tmp, mem_mb=1000, mem_mib=954, runtime=10
+
+[Tue Oct 21 14:49:50 2025]
+Finished job 6.
+3 of 10 steps (30%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct 21 14:49:50 2025]
+localrule big_calculation:
+    input: results/sample2.clean.txt
+    output: results/sample2.calc.txt
+    log: logs/sample2.calc.log
+    jobid: 5
+    reason: Missing output files: results/sample2.calc.txt; Input files updated by another job: results/sample2.clean.txt
+    wildcards: sample=sample2
+    threads: 2
+    resources: tmpdir=/tmp, mem_mb=1000, mem_mib=954, runtime=10
+
+[Tue Oct 21 14:50:10 2025]
+Finished job 2.
+4 of 10 steps (40%) done
+Removing temporary output results/sample1.clean.txt.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct 21 14:50:10 2025]
+localrule summarize:
+    input: results/sample1.calc.txt
+    output: results/sample1.summary.txt
+    log: logs/sample1.summary.log
+    jobid: 1
+    reason: Missing output files: results/sample1.summary.txt; Input files updated by another job: results/sample1.calc.txt
+    wildcards: sample=sample1
+    resources: tmpdir=/tmp
+
+[Tue Oct 21 14:50:10 2025]
+Finished job 8.
+5 of 10 steps (50%) done
+Removing temporary output results/sample3.clean.txt.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct 21 14:50:10 2025]
+localrule summarize:
+    input: results/sample3.calc.txt
+    output: results/sample3.summary.txt
+    log: logs/sample3.summary.log
+    jobid: 7
+    reason: Missing output files: results/sample3.summary.txt; Input files updated by another job: results/sample3.calc.txt
+    wildcards: sample=sample3
+    resources: tmpdir=/tmp
+
+[Tue Oct 21 14:50:10 2025]
+Finished job 5.
+6 of 10 steps (60%) done
+Removing temporary output results/sample2.clean.txt.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct 21 14:50:10 2025]
+localrule summarize:
+    input: results/sample2.calc.txt
+    output: results/sample2.summary.txt
+    log: logs/sample2.summary.log
+    jobid: 4
+    reason: Missing output files: results/sample2.summary.txt; Input files updated by another job: results/sample2.calc.txt
+    wildcards: sample=sample2
+    resources: tmpdir=/tmp
+
+[Tue Oct 21 14:50:10 2025]
+Finished job 1.
+7 of 10 steps (70%) done
+Removing temporary output results/sample1.calc.txt.
+[Tue Oct 21 14:50:10 2025]
+Finished job 7.
+8 of 10 steps (80%) done
+Removing temporary output results/sample3.calc.txt.
+[Tue Oct 21 14:50:10 2025]
+Finished job 4.
+9 of 10 steps (90%) done
+Removing temporary output results/sample2.calc.txt.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct 21 14:50:10 2025]
+localrule all:
+    input: results/sample1.summary.txt, results/sample2.summary.txt, results/sample3.summary.txt
+    jobid: 0
+    reason: Input files updated by another job: results/sample1.summary.txt, results/sample3.summary.txt, results/sample2.summary.txt
+    resources: tmpdir=/tmp
+
+[Tue Oct 21 14:50:10 2025]
+Finished job 0.
+10 of 10 steps (100%) done
+Complete log: .snakemake/log/2025-10-21T144950.402893.snakemake.log
