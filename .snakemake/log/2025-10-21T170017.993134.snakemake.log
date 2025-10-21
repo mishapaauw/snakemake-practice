@@ -1,3 +1,0 @@
-Building DAG of jobs...
-MissingRuleException:
-No rule to produce --cluster=sbatch -A myaccount -t {cluster.time} -c {cluster.threads} --mem={cluster.mem} -o logs/slurm-%j.out (if you use input functions make sure that they don't raise unexpected exceptions).
