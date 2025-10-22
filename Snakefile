@@ -1,31 +1,52 @@
+import glob, os
+
+SAMPLES = [os.path.basename(f).replace(".fna", "") for f in glob.glob("data/test/*.fna")]
+
 configfile: "config.yaml"
+
+localrules: count_hops, summarize_hop_counts
 
 rule all:
     input:
-        expand("results/{sample}.summary.txt", sample=config["samples"])
+        "results/prokka_summary.tsv"
 
-rule clean:
+
+rule prokka:
     input:
-        "data/{sample}.txt"
+        "data/test/{sample}.fna"
     output:
-        temp("results/{sample}.clean.txt")
-    resources:
-        mem_mb=2000,     # 2GB
-        cpus_per_task=1
+        "results/prokka/{sample}/{sample}.tsv"
+    params:
+        outdir="results/prokka/{sample}",
+        prefix="{sample}"
+    conda:
+        "envs/prokka.yml"
     shell:
         """
-        sort {input} | uniq > {output}
+        prokka --force --outdir {params.outdir} --prefix {params.prefix} {input}
         """
 
-rule summarize:
+rule count_hops:
     input:
-        "results/{sample}.clean.txt"
+        "results/prokka/{sample}/{sample}.tsv"
     output:
-        "results/{sample}.summary.txt"
-    resources:
-        mem_mb=1000
+        "results/prokka/{sample}/hop_count.txt"
     shell:
         """
-        wc -l {input} >> {output}
+        grep -c 'Hop' {input} > {output} || echo 0 > {output}
         """
 
+rule summarize_hop_counts:
+    input:
+        expand("results/prokka/{sample}/hop_count.txt", sample=SAMPLES)
+    output:
+        "results/prokka_summary.tsv"
+    shell:
+        """
+        echo -e "sample\thop_count" > {output}
+        for f in {input}; do
+            s=$(basename $(dirname "$f"))
+            c=$(cat "$f")
+            echo -e "$s\t$c" >> {output}
+        done
+        """
